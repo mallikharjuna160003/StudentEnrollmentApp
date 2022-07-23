@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Register Page
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    
+    <div class="container">
+        <form action="#" method="POST" class="form-register" style="color:white">
+            {{ form.hidden_tag() }}
+            <img style="margin-top:50px" class="mb-4 img-rounded img-thumbnail" height="200" width="250" src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?w=900&t=st=1658472241~exp=1658472841~hmac=d44eee63d22eb7906e5bf70d3a0ecb8b8448c67e322e90df30704d674e59b829" alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Create Your Account
+            </h1>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="User") }}
+            {{ form.email_address.label() }}
+            {{ form.email_address(class="form-control", placeholder="Email") }}
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control", placeholder="password") }}
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control", placeholder="Confirm password") }}
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Already have account?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page')}}">Login</a>
+               </div>
+            {{ form.submit(class='btn btn-lg btn-block btn-primary')}}
+    </form>
+    </div>
+</body>
+
+{% endblock %}

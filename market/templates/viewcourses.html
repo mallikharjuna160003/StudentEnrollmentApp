@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+All Courses
+{% endblock %}
+
+{% block content %}
+
+{% if post %}
+<table class=" center table table-dark" style="margin-top:50px;margin-right:40px;color:white">
+   <thead>
+     <tr>
+       <th scope="col">ID</th>
+       <th scope="col">Student Name</th>
+       <th scope="col">Course Name</th>
+       <th scope="col">Gender</th>
+       <th scope="col">Batch</th>
+       <th scope="col">Action</th>
+     </tr>
+   </thead>
+   <tbody>
+    
+      {% for item in post %}
+      <tr>
+         <th scope="row">{{ item.id }}</th>
+         <td>{{ item.studentname }}</td>
+         <td>{{ item.cname }}</td>
+         <td>{{ item.gender }}</td>
+         <td>{{ item.batch }}</td>
+         <td><button style="color:green"><a href="{{ url_for('edit_page',id=item.id) }}">Update</a></button>
+          <button style="color:green"><a href="{{ url_for('delete_item',id=item.id) }}">Delete</a></button></td>
+      </tr>
+      {% endfor %}
+   </tbody>
+ </table>
+{% else %}
+      <h2>Page is Empty</h2>
+{% endif %}
+
+{% endblock %}
