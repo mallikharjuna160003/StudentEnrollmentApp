@@ -25,10 +25,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField(label='Sign In')
 
 class CourseForm(FlaskForm):
-    studentname = StringField(label='Student Name:',validators=[Length(min=2,max=30),DataRequired()])
-    batch = SelectField(label='Batch No:',choices=[('b1','Batch1'),('b2','Batch2')])
-    gender = SelectField(label='Gender:',choices=[('F','Female'),('M','Male')])
-    cname = SelectField(u'Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'),('c','C language')])
+    batch = SelectField(label='Batch No:',choices=[('Batch1','Batch1'),('Batch2','Batch2')])
+    regulartype = SelectField(label='Course Type:',choices=[('Regular','Regular'),('IrRegular','IrRegular')])
+    cname = SelectField(u'Programming Language', choices=[('cpp', 'C++'), ('Python', 'Python'),('C Language','C language')])
     submit = SubmitField(label='Register Course')
     
     

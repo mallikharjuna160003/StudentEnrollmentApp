@@ -13,20 +13,21 @@ def home_page():
 def course_page():
     form = CourseForm()
     if request.method=="POST":
-        
         if form.validate_on_submit():
-            course_to_create = CourseName(studentname=form.studentname.data,
-                                batch=form.batch.data,
-                                gender=form.gender.data,
+            try:
+                course_to_create = CourseName(batch=form.batch.data,
+                                regulartype=form.regulartype.data,
                                 cname=form.cname.data,
                                 owner=current_user.id)
-            db.session.add(course_to_create)
-            db.session.commit()
-            flash(f'Course Registered Successfully!!',category='success')
-
-        if form.errors != {}: #if there are no errors
-            for err_msg in form.errors.values():
-                flash(f' There was an error with registation { err_msg }',category='danger') 
+                db.session.add(course_to_create)
+                db.session.commit()
+                flash(f'Course Registered Successfully!!',category='success')
+                
+            except:
+                 if form.errors != {}: #if there are no erro
+                    for err_msg in form.errors.values():
+                        flash(f' There was an error with registation { err_msg }',category='danger') 
+       
         return render_template('home.html')  
     return render_template('course.html',form=form)
 
@@ -78,9 +79,8 @@ def edit_page(id):
     post = CourseName.query.get_or_404(id)
     form = CourseForm()
     if form.validate_on_submit():
-        post.studentname= form.studentname.data
         post.batch = form.batch.data
-        post.gender = form.gender.data
+        post.regulartype = form.regulartype.data
         post.cname = form.cname.data
         db.session.add(post)
         db.session.commit()
@@ -90,9 +90,8 @@ def edit_page(id):
         #     for err_msg in form.errors.values():
         #         flash(f' There was an error with creating a user { err_msg }',category='danger')   
         return redirect(url_for('course_view'))
-    form.studentname.data = post.studentname
     form.batch.data = post.batch
-    form.gender.data = post.gender
+    form.regulartype.data = post.regulartype
     form.cname.data = post.cname
     return render_template('editcourse.html',form=form)
 
@@ -117,6 +116,7 @@ def delete_item(id):
         return redirect(url_for('home_page'))
 
     except:
+        db.session.rollback()
         flash(f'Whoops!! Problem with deletion Candidate with id{temp} !!',category='danger')
         post = CourseName.query.all()
         return render_template('viewcourses.html',post=post)

@@ -9,12 +9,7 @@ Update Course
   <h1 style="margin-top: 20px;text-align: center;">Register Course</h1>
   <form method="POST" class="form-signin" style="color:white">
     {{ form.hidden_tag() }}
-    <div class="row mb-3 mt-4">
-      {{ form.studentname.label(class="col-sm-2 col-form-label") }}
-      <div class="col-sm-10">
-        {{ form.studentname(class="form-control", placeholder="User")}}
-      </div>
-    </div>
+
     <div class="row mb-3 mt-4">
       {{ form.batch.label(class="col-sm-2 col-form-label") }}
       <div class="col-sm-10">
@@ -23,9 +18,9 @@ Update Course
 
     </div> 
     <div class="row mb-3 mt-4">
-      {{ form.gender.label(class="col-sm-2 col-form-label") }}
+      {{ form.regulartype.label(class="col-sm-2 col-form-label") }}
       <div class="col-sm-10">
-        {{ form.gender(class="form-select form-select-sm") }}
+        {{ form.regulartype(class="form-select form-select-sm") }}
       </div>
     </div> 
     <div class="row mb-3 mt-4">

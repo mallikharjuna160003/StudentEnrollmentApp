@@ -27,10 +27,9 @@ class User(db.Model, UserMixin):
     
 class CourseName(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    studentname = db.Column(db.String(length=30), nullable=False)
     batch = db.Column(db.String(length=30),nullable=False)
-    gender = db.Column(db.String(length=30),nullable=False)
-    cname = db.Column(db.String(length=30), nullable=False)
+    regulartype = db.Column(db.String(length=30),nullable=False)
+    cname = db.Column(db.String(length=30), nullable=False,unique=True)
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
     def __repr__(self):
         return f'Item {self.studentname}' 
